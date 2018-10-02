@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0; }
+
+.contain {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto; }
+
+.poll-container {
+  margin: 0 0 40px; }
+  .poll-container .poll-title {
+    margin: 0 0 10px; }
+
+.votes-container {
+  display: flex; }
+  .votes-container .answer {
+    margin-right: 25px; }
+    .votes-container .answer span {
+      display: block; }
+
+.result-container {
+  border: 1px solid #000;
+  height: 40px;
+  display: flex; }
+  .result-container span {
+    height: 100%;
+    transition: 0.2s width;
+    cursor: pointer; }

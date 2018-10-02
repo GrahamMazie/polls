@@ -1,0 +1,29 @@
+{
+  "name": "polls",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "history": "^4.7.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run sass:watch\"",
+    "start": "react-scripts start",
+    "build": "yarn sass:build && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "sass:watch": "node-sass -w src/styles/scss -o src/styles/css",
+    "sass:build": "node-sass src/styles/scss -o src/styles/css --source-map true"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.3"
+  }
+}
