@@ -40,10 +40,25 @@ class ResultsDisplay extends Component {
       />
     );
   };
+
+  answerRender = (answer, index) => {
+    return (
+      <div className="answer" key={index}>
+        <span>{answer.text}</span>
+        <span>Votes: {answer.votes}</span>
+      </div>
+    );
+  };
   render() {
     return (
-      <div className="result-container">
-        {this.props.poll.answers.map(this.renderBars)}
+      <div className="poll-results">
+        <h3 className="poll-title">{this.props.poll.text}</h3>
+        <div className="result-container">
+          {this.props.poll.answers.map(this.renderBars)}
+        </div>
+        <div className="votes-container">
+          {this.props.poll.answers.map(this.answerRender)}
+        </div>
       </div>
     );
   }

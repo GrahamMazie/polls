@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import ResultsDisplay from "./ResultsDisplay";
+import { Link } from "react-router-dom";
 
 class Poll extends Component {
-  answerRender = (answer, index) => {
-    return (
-      <div className="answer" key={index}>
-        <span>{answer.text}</span>
-        <span>Votes: {answer.votes}</span>
-      </div>
-    );
-  };
-
   buttonRender = (answer, index) => {
     return (
       <button
@@ -27,13 +19,17 @@ class Poll extends Component {
     const totalVotes = pollData.answers.reduce((a, b) => ({
       votes: a.votes + b.votes
     })).votes;
+    console.log(this.props);
     return (
       <div className="poll-container">
-        <h3 className="poll-title">{pollData.text}</h3>
-        <ResultsDisplay {...this.props} totalVotes={totalVotes} />
-        <div className="votes-container">
-          {pollData.answers.map(this.answerRender)}
-        </div>
+        {this.props.pathname === "/" ? (
+          <Link to={`/poll/${this.props.poll.pollId}`}>
+            <ResultsDisplay {...this.props} totalVotes={totalVotes} />
+          </Link>
+        ) : (
+          <ResultsDisplay {...this.props} totalVotes={totalVotes} />
+        )}
+
         <div className="button-container">
           {pollData.answers.map(this.buttonRender)}
         </div>

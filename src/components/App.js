@@ -5,7 +5,8 @@ import Main from "./Main";
 
 function mapStateToProps(state) {
   return {
-    polls: state.polls
+    polls: state.polls,
+    pathname: state.router.location.pathname
   };
 }
 
