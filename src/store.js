@@ -16,9 +16,6 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-//export const history = syncHistoryWithStore(createBrowserHistory(), store);
-//export const history = syncHistoryWithStore(browserHistory, store);
-
 // WEBPACK HOT RELOADING
 // if (module.hot) {
 //   module.hot.accept("./reducers/", () => {

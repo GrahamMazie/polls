@@ -1,5 +1,20 @@
 .poll-container {
-  margin: 0 0 40px;
+  margin: 0 0 60px;
+  .poll-link {
+    display: inline-block;
+    width: 100%;
+    padding: 25px 40px;
+    transition: 0.2s all;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #000;
+    background: #fff;
+    &:hover {
+      text-decoration: none;
+      transition: 0.2s all;
+      border: 1px solid #000;
+    }
+  }
   .poll-title {
     margin: 0 0 10px;
   }
@@ -21,5 +36,14 @@
     height: 100%;
     transition: 0.2s width;
     cursor: pointer;
+  }
+}
+.__react_component_tooltip {
+  text-align: center;
+  &.show {
+    opacity: 1;
+  }
+  span {
+    display: block;
   }
 }

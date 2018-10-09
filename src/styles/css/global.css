@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0; }
+
+.contain {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: 0 auto; }
+
+a {
+  text-decoration: none; }

@@ -9,8 +9,27 @@ body {
   padding: 0 15px;
   margin: 0 auto; }
 
+a {
+  text-decoration: none; }
+
+.masthead {
+  text-align: center; }
+
 .poll-container {
-  margin: 0 0 40px; }
+  margin: 0 0 60px; }
+  .poll-container .poll-link {
+    display: inline-block;
+    width: 100%;
+    padding: 25px 40px;
+    transition: 0.2s all;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #000;
+    background: #fff; }
+    .poll-container .poll-link:hover {
+      text-decoration: none;
+      transition: 0.2s all;
+      border: 1px solid #000; }
   .poll-container .poll-title {
     margin: 0 0 10px; }
 
@@ -29,3 +48,10 @@ body {
     height: 100%;
     transition: 0.2s width;
     cursor: pointer; }
+
+.__react_component_tooltip {
+  text-align: center; }
+  .__react_component_tooltip.show {
+    opacity: 1; }
+  .__react_component_tooltip span {
+    display: block; }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactTooltip from "react-tooltip";
 
 class ResultsDisplay extends Component {
   increase_brightness(hex, percent) {
@@ -35,9 +36,16 @@ class ResultsDisplay extends Component {
     const bgColor = this.increase_brightness("#84b0ca", index * 20);
     return (
       <span
+        data-tip
+        data-for={`renderBar${index}Poll${this.props.poll.pollId}`}
         style={{ width: `${widthPercent}%`, background: bgColor }}
         key={index}
-      />
+      >
+        <ReactTooltip id={`renderBar${index}Poll${this.props.poll.pollId}`}>
+          <span>{`${widthPercent}%`}</span>
+          <span>{`Votes: ${barData.votes}`}</span>
+        </ReactTooltip>
+      </span>
     );
   };
 

@@ -5,3 +5,11 @@ export function addVote(pollId, answerIndex) {
     answerIndex
   };
 }
+
+export function changeSelectedVote(pollId, answerIndex) {
+  return {
+    type: "CHANGE_SELECTED_VOTE",
+    pollId,
+    answerIndex
+  };
+}
