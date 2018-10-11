@@ -1,6 +1,6 @@
 .poll-container {
-  margin: 0 0 60px;
-  .poll-link {
+  margin: 0 0 70px;
+  .poll-item {
     display: inline-block;
     width: 100%;
     padding: 25px 40px;
@@ -9,14 +9,39 @@
     border-radius: 6px;
     color: #000;
     background: #fff;
-    &:hover {
-      text-decoration: none;
-      transition: 0.2s all;
-      border: 1px solid #000;
-    }
+  }
+  a.poll-item:hover {
+    text-decoration: none;
+    transition: 0.2s all;
+    border: 1px solid #000;
   }
   .poll-title {
     margin: 0 0 10px;
+  }
+  form {
+    text-align: center;
+    input[type="submit"] {
+      margin-top: 14px;
+      cursor: pointer;
+    }
+  }
+  .radio-buttons {
+    display: flex;
+    max-width: 300px;
+    justify-content: space-evenly;
+    margin: 15px auto 0 auto;
+    .radio {
+      text-align: center;
+      flex: 20%;
+      label {
+        padding: 0 15px;
+        display: block;
+        cursor: pointer;
+        span {
+          display: block;
+        }
+      }
+    }
   }
 }
 .votes-container {

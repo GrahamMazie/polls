@@ -1,6 +1,6 @@
 .poll-container {
-  margin: 0 0 60px; }
-  .poll-container .poll-link {
+  margin: 0 0 70px; }
+  .poll-container .poll-item {
     display: inline-block;
     width: 100%;
     padding: 25px 40px;
@@ -9,12 +9,31 @@
     border-radius: 6px;
     color: #000;
     background: #fff; }
-    .poll-container .poll-link:hover {
-      text-decoration: none;
-      transition: 0.2s all;
-      border: 1px solid #000; }
+  .poll-container a.poll-item:hover {
+    text-decoration: none;
+    transition: 0.2s all;
+    border: 1px solid #000; }
   .poll-container .poll-title {
     margin: 0 0 10px; }
+  .poll-container form {
+    text-align: center; }
+    .poll-container form input[type="submit"] {
+      margin-top: 14px;
+      cursor: pointer; }
+  .poll-container .radio-buttons {
+    display: flex;
+    max-width: 300px;
+    justify-content: space-evenly;
+    margin: 15px auto 0 auto; }
+    .poll-container .radio-buttons .radio {
+      text-align: center;
+      flex: 20%; }
+      .poll-container .radio-buttons .radio label {
+        padding: 0 15px;
+        display: block;
+        cursor: pointer; }
+        .poll-container .radio-buttons .radio label span {
+          display: block; }
 
 .votes-container {
   display: flex; }

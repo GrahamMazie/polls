@@ -7,6 +7,7 @@ class Poll extends Component {
     return (
       <div className="radio" key={index}>
         <label>
+          <span>{answer.text}</span>
           <input
             type="radio"
             name="pollRadioBtn"
@@ -18,7 +19,6 @@ class Poll extends Component {
             )}
             checked={answer.selected}
           />
-          {answer.text}
         </label>
       </div>
     );
@@ -41,14 +41,18 @@ class Poll extends Component {
     return (
       <div className="poll-container">
         {this.props.pathname === "/" ? (
-          <Link to={`/poll/${this.props.poll.pollId}`} className="poll-link">
+          <Link to={`/poll/${this.props.poll.pollId}`} className="poll-item">
             <ResultsDisplay {...this.props} totalVotes={totalVotes} />
           </Link>
         ) : (
-          <ResultsDisplay {...this.props} totalVotes={totalVotes} />
+          <div className="poll-item">
+            <ResultsDisplay {...this.props} totalVotes={totalVotes} />
+          </div>
         )}
         <form onSubmit={e => this.handleSubmit(e)}>
-          {pollData.answers.map(this.inputRender)}
+          <div className="radio-buttons">
+            {pollData.answers.map(this.inputRender)}
+          </div>
           <input type="submit" value="Submit" />
         </form>
       </div>
