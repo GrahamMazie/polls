@@ -1,15 +1,18 @@
-export function addVote(pollId, answerIndex) {
-  return {
-    type: "ADD_VOTE",
-    pollId,
-    answerIndex
-  };
-}
+import { pollsRef } from "../store";
 
-export function changeSelectedVote(pollId, answerIndex) {
-  return {
-    type: "CHANGE_SELECTED_VOTE",
-    pollId,
-    answerIndex
-  };
-}
+export const addVote = polls => async dispatch => {
+  pollsRef.set(polls);
+};
+
+export const changeSelectedVote = polls => async dispatch => {
+  pollsRef.set(polls);
+};
+
+export const fetchPolls = () => async dispatch => {
+  pollsRef.on("value", snapshot => {
+    dispatch({
+      type: "FETCH_POLLS",
+      payload: snapshot.val()
+    });
+  });
+};

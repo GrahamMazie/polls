@@ -6,6 +6,10 @@
 # testing
 /coverage
 
+# firebase keys
+/src/config/dev.js
+/src/config/prod.js
+
 # production
 /build
 

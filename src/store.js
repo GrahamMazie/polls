@@ -1,27 +1,24 @@
-import { createStore } from "redux";
-import { connectRouter } from "connected-react-router";
-import rootReducer from "./reducers/rootReducer";
-import polls from "./data/polls";
-import createHistory from "history/createBrowserHistory";
+import { FirebaseConfig as firebaseConfig } from "./config/keys";
 
-const defaultState = {
-  polls
-};
+import { createStore, compose } from "redux";
+import createHistory from "history/createBrowserHistory";
+import { reactReduxFirebase } from "react-redux-firebase";
+import firebase from "firebase";
 
 export const history = createHistory();
 
-const store = createStore(
-  connectRouter(history)(rootReducer),
-  defaultState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: "users"
+};
 
-// WEBPACK HOT RELOADING
-// if (module.hot) {
-//   module.hot.accept("./reducers/", () => {
-//     const nextRootReducer = require("./reducers/rootReducer").default;
-//     store.replaceReducer(nextRootReducer);
-//   });
-// }
+// Initialize firebase instance
+firebase.initializeApp(firebaseConfig);
 
-export default store;
+const databaseRef = firebase.database().ref();
+export const pollsRef = databaseRef.child("polls");
+
+// Add reactReduxFirebase enhancer when making store creator
+export const createStoreWithFirebase = compose(
+  reactReduxFirebase(firebase, rrfConfig) // firebase instance as first argument
+)(createStore);

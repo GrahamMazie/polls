@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router";
+import { Router } from "react-router";
 import { history } from "../store";
 import Header from "./Header";
 import PollList from "./PollList";
@@ -17,7 +17,7 @@ class Main extends Component {
   render() {
     return (
       <div className="page-wrapper">
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Header>
             <Switch>
               <Route path="/" exact render={this.renderPollList} />
@@ -25,7 +25,7 @@ class Main extends Component {
               <Route component={NotFound} />
             </Switch>
           </Header>
-        </ConnectedRouter>
+        </Router>
       </div>
     );
   }

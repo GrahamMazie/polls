@@ -6,7 +6,7 @@ import Main from "./Main";
 function mapStateToProps(state) {
   return {
     polls: state.polls,
-    pathname: state.router.location.pathname
+    pathname: "/"
   };
 }
 
