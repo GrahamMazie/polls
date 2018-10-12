@@ -1,3 +1,11 @@
-.masthead {
-  text-align: center;
+.header-container {
+  position: relative;
+  .masthead {
+    text-align: center;
+  }
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

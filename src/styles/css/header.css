@@ -1,0 +1,8 @@
+.header-container {
+  position: relative; }
+  .header-container .masthead {
+    text-align: center; }
+  .header-container .btn {
+    position: absolute;
+    top: 0;
+    right: 0; }

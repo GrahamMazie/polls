@@ -57,7 +57,7 @@ class Poll extends Component {
     if (pollData !== undefined) {
       return (
         <div className="poll-container">
-          {this.props.pathname === "/" ? (
+          {Object.keys(this.props.id).length === 0 ? (
             <Link to={`/poll/${this.props.poll.pollId}`} className="poll-item">
               <ResultsDisplay {...this.props} totalVotes={totalVotes} />
             </Link>
