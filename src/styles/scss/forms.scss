@@ -1,0 +1,21 @@
+.poll-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+  label {
+    margin: 0 0 10px;
+    display: inline-block;
+    font-family: "Amaranth", sans-serif;
+    font-size: 30px;
+  }
+  input {
+    &[type="text"] {
+      display: block;
+      margin: 0 0 15px;
+      height: 60px;
+      padding: 15px;
+      font-size: 18px;
+      width: 100%;
+    }
+  }
+}

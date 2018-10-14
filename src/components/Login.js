@@ -10,7 +10,6 @@ class Login extends Component {
   }
   componentWillUpdate(nextProps) {
     if (nextProps.authenticated) {
-      console.log(this);
       this.props.history.push("/");
     }
   }

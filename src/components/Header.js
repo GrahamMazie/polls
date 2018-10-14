@@ -4,10 +4,27 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
 
 class Header extends Component {
-  componentWillMount() {
-    // if (this.props.authenticated) {
-    //   this.props.history.push("/");
-    // }
+  renderLogoutButtons() {
+    if (this.props.router.location.pathname === "/form-creator") {
+      return (
+        <div className="header-link-wrapper">
+          <button onClick={this.props.signOut} className="btn">
+            Log Out
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="header-link-wrapper">
+          <button onClick={this.props.signOut} className="btn">
+            Log Out
+          </button>
+          <Link to="/form-creator" className="">
+            Create Form
+          </Link>
+        </div>
+      );
+    }
   }
   render() {
     return (
@@ -16,9 +33,7 @@ class Header extends Component {
           <Link to="/">Polls!</Link>
         </h1>
         {this.props.authenticated ? (
-          <button onClick={this.props.signOut} className="btn">
-            Log Out
-          </button>
+          this.renderLogoutButtons()
         ) : (
           <Link to="/login" className="btn">
             Login
@@ -29,9 +44,10 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = state => {
   return {
-    authenticated: auth
+    authenticated: state.auth,
+    router: state.router
   };
 };
 

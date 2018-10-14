@@ -27,11 +27,9 @@ class Single extends Component {
   }
 }
 
-const mapStateToProps = ({ data }) => {
-  return {
-    data
-  };
-};
+function mapStateToProps(state) {
+  return { data: state.polls };
+}
 export default connect(
   mapStateToProps,
   actions

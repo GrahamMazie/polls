@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
-import data from "./polls";
-import auth from "./auth";
+import pollsReducer from "./polls";
+import authReducer from "./auth";
+import pollFormReducer from "./pollForm";
 
 const rootReducer = combineReducers({
   router: routerReducer,
-  auth,
-  data
+  auth: authReducer,
+  polls: pollsReducer,
+  pollForm: pollFormReducer
 });
 
 export default rootReducer;

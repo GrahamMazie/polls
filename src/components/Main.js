@@ -7,6 +7,7 @@ import PollList from "./PollList";
 import Single from "./Single";
 import NotFound from "./NotFound";
 import Login from "./Login";
+import FormCreator from "./FormCreator";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
 
@@ -30,6 +31,7 @@ class Main extends Component {
             <Route path="/" exact render={this.renderPollList} />
             <Route path="/poll/:pollId" render={this.renderSingle} />
             <Route path="/login" component={Login} />
+            <Route path="/form-creator" component={FormCreator} />
             <Route component={NotFound} />
           </Switch>
         </div>

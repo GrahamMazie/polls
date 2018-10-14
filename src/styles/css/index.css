@@ -50,10 +50,24 @@ h1.masthead {
   position: relative; }
   .header-container .masthead {
     text-align: center; }
-  .header-container .btn {
+  .header-container .header-link-wrapper,
+  .header-container a.btn {
     position: absolute;
     top: 0;
-    right: 0; }
+    right: 15px; }
+  .header-container .header-link-wrapper {
+    text-align: center; }
+    .header-container .header-link-wrapper button {
+      display: block; }
+    .header-container .header-link-wrapper a {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 16px;
+      font-family: sans-serif;
+      color: #000;
+      font-weight: bold; }
+      .header-container .header-link-wrapper a:hover {
+        text-decoration: underline; }
 
 .poll-container {
   margin: 0 0 70px; }
@@ -114,3 +128,20 @@ h1.masthead {
     opacity: 1; }
   .__react_component_tooltip span {
     display: block; }
+
+.poll-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 0 80px; }
+  .poll-form label {
+    margin: 0 0 10px;
+    display: inline-block;
+    font-family: "Amaranth", sans-serif;
+    font-size: 30px; }
+  .poll-form input[type="text"] {
+    display: block;
+    margin: 0 0 15px;
+    height: 60px;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%; }

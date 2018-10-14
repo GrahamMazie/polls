@@ -2,7 +2,21 @@
   position: relative; }
   .header-container .masthead {
     text-align: center; }
-  .header-container .btn {
+  .header-container .header-link-wrapper,
+  .header-container a.btn {
     position: absolute;
     top: 0;
-    right: 0; }
+    right: 15px; }
+  .header-container .header-link-wrapper {
+    text-align: center; }
+    .header-container .header-link-wrapper button {
+      display: block; }
+    .header-container .header-link-wrapper a {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 16px;
+      font-family: sans-serif;
+      color: #000;
+      font-weight: bold; }
+      .header-container .header-link-wrapper a:hover {
+        text-decoration: underline; }

@@ -8,6 +8,10 @@ export const changeSelectedVote = polls => async dispatch => {
   pollsRef.set(polls);
 };
 
+export const addPoll = polls => async dispatch => {
+  pollsRef.set(polls);
+};
+
 export const fetchPolls = () => async dispatch => {
   pollsRef.on("value", snapshot => {
     dispatch({
@@ -34,12 +38,9 @@ export const fetchUser = () => dispatch => {
 };
 
 export const signIn = () => dispatch => {
-  console.log("fired");
   authRef
     .signInWithPopup(fbProvider)
-    .then(result => {
-      console.log("success");
-    })
+    .then(result => {})
     .catch(error => {
       console.log(error);
     });
@@ -54,4 +55,8 @@ export const signOut = () => dispatch => {
     .catch(error => {
       console.log(error);
     });
+};
+
+export const addPollOption = () => dispatch => {
+  dispatch({ type: "ADD_POLL_OPTION" });
 };

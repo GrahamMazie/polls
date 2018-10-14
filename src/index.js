@@ -10,10 +10,15 @@ import Main from "./components/Main";
 import "./styles/css/index.css";
 
 // Create store with reducers and initial state
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   connectRouter(history)(rootReducer),
-  {},
-  compose(applyMiddleware(reduxThunk, routerMiddleware(history)))
+  {
+    pollForm: {
+      inputId: ["pollOption1", "pollOption2"]
+    }
+  },
+  composeEnhancers(applyMiddleware(reduxThunk, routerMiddleware(history)))
 );
 
 const router = (
