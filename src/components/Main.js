@@ -40,9 +40,10 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = state => {
   return {
-    data
+    authenticated: state.auth,
+    data: state.polls
   };
 };
 

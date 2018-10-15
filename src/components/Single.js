@@ -9,7 +9,13 @@ class Single extends Component {
   }
   findPoll = () => {
     const polls = this.props.data;
-    const index = polls.findIndex(poll => poll.pollId === this.props.id.pollId);
+    const index = polls.findIndex(poll => {
+      if (poll) {
+        return poll.pollId === this.props.id.pollId;
+      } else {
+        return false;
+      }
+    });
     return { ...polls[index] };
   };
   render() {

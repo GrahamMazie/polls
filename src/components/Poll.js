@@ -34,7 +34,7 @@ class Poll extends Component {
     const dataCopy = { ...this.props.data };
     dataCopy[pollIndex].answers[index].votes =
       dataCopy[pollIndex].answers[index].votes + 1;
-    this.props.addVote(dataCopy);
+    this.props.addVote(dataCopy, pollIndex);
     return;
   }
   handleRadioSelect(pollId, i) {
@@ -66,12 +66,16 @@ class Poll extends Component {
               <ResultsDisplay {...this.props} totalVotes={totalVotes} />
             </div>
           )}
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <div className="radio-buttons">
-              {pollData.answers.map(this.inputRender)}
-            </div>
-            <input type="submit" value="Submit" />
-          </form>
+          {this.props.authenticated ? (
+            <form onSubmit={e => this.handleSubmit(e)}>
+              <div className="radio-buttons">
+                {pollData.answers.map(this.inputRender)}
+              </div>
+              <input type="submit" value="Submit" />
+            </form>
+          ) : (
+            ""
+          )}
         </div>
       );
     } else {
@@ -80,9 +84,12 @@ class Poll extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { data: state.polls };
-}
+const mapStateToProps = state => {
+  return {
+    authenticated: state.auth,
+    data: state.polls
+  };
+};
 
 export default connect(
   mapStateToProps,

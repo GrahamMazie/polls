@@ -16,6 +16,9 @@ const store = createStore(
   {
     pollForm: {
       inputId: ["pollOption1", "pollOption2"]
+    },
+    auth: {
+      isLoading: true
     }
   },
   composeEnhancers(applyMiddleware(reduxThunk, routerMiddleware(history)))

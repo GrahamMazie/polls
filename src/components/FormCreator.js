@@ -6,6 +6,7 @@ import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
 class FormCreator extends Component {
   componentWillMount() {
+    console.log(this.props.authenticated);
     if (!this.props.authenticated) {
       this.props.history.push("/");
     }

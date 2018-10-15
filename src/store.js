@@ -9,5 +9,6 @@ firebase.initializeApp(firebaseConfig);
 
 const databaseRef = firebase.database().ref();
 export const pollsRef = databaseRef.child("polls");
+export const userRef = databaseRef.child("users");
 export const authRef = firebase.auth();
 export const fbProvider = new firebase.auth.FacebookAuthProvider();

@@ -1,7 +1,7 @@
 .poll-form {
   max-width: 500px;
   margin: 0 auto;
-  padding: 0 0 80px;
+  padding: 0 40px 80px;
   label {
     margin: 0 0 10px;
     display: inline-block;
@@ -16,7 +16,6 @@
       padding: 15px;
       font-size: 18px;
       width: 100%;
-      max-width: 470px;
     }
   }
   button.btn {
@@ -31,7 +30,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 0;
+      right: -25px;
       color: #fd7878;
       cursor: pointer;
       display: none;

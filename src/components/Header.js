@@ -33,7 +33,7 @@ class Header extends Component {
           <Link to="/">Polls!</Link>
         </h1>
         {this.props.authenticated ? (
-          this.renderLogoutButtons()
+          !this.props.authenticated.isLoading && this.renderLogoutButtons()
         ) : (
           <Link to="/login" className="btn">
             Login

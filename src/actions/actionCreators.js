@@ -1,7 +1,29 @@
-import { pollsRef, authRef, fbProvider } from "../store";
+import { pollsRef, authRef, userRef, fbProvider } from "../store";
 
-export const addVote = polls => async dispatch => {
+export const addVote = (polls, pollIndex) => async dispatch => {
   pollsRef.set(polls);
+  const uid = authRef.currentUser.uid;
+  userRef
+    .child(uid)
+    .once("value")
+    .then(function(snapshot) {
+      const snap = snapshot.val();
+      if (snap && snap.submittedForms) {
+        const submittedForms = snap.submittedForms;
+        submittedForms.push(polls[pollIndex].pollId);
+        userRef
+          .child(uid)
+          .child("submittedForms")
+          .set(submittedForms);
+      } else {
+        const list = [];
+        list.push(polls[pollIndex].pollId);
+        userRef
+          .child(uid)
+          .child("submittedForms")
+          .set(list);
+      }
+    });
 };
 
 export const changeSelectedVote = polls => async dispatch => {
@@ -65,3 +87,14 @@ export const addPollOption = () => dispatch => {
 export const removePollOption = () => dispatch => {
   dispatch({ type: "REMOVE_POLL_OPTION" });
 };
+
+// function writeUserData(userId, name, email, imageUrl) {
+//   firebase
+//     .database()
+//     .ref("users/" + userId)
+//     .set({
+//       username: name,
+//       email: email
+//       //some more user data
+//     });
+// }
