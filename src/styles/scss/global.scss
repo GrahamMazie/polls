@@ -37,4 +37,8 @@ a {
     color: #fff;
     background-color: #63afdc;
   }
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }

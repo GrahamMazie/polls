@@ -10,6 +10,7 @@ export const changeSelectedVote = polls => async dispatch => {
 
 export const addPoll = polls => async dispatch => {
   pollsRef.set(polls);
+  dispatch({ type: "RESET_POLL_FORM" });
 };
 
 export const fetchPolls = () => async dispatch => {

@@ -9,6 +9,11 @@ export default (state = {}, action) => {
     case "REMOVE_POLL_OPTION":
       stateCopy.inputId.pop();
       return stateCopy;
+    case "RESET_POLL_FORM":
+      const resetState = {
+        inputId: ["pollOption1", "pollOption2"]
+      };
+      return resetState;
     default:
       return state;
   }

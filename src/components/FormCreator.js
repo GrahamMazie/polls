@@ -70,6 +70,7 @@ class FormCreator extends Component {
           id={id}
           ref={id}
           placeholder={`Poll Option #${index + 1}`}
+          required
         />
         {index > 1 ? (
           <FontAwesomeIcon
@@ -109,12 +110,13 @@ class FormCreator extends Component {
             <button
               onClick={this.addAnswer.bind(this)}
               disabled={this.props.pollForm.inputId.length >= 5}
+              className="btn"
             >
               Add Answer
             </button>
           </div>
-          <div className="input-field">
-            <input type="submit" value="Add Form" />
+          <div className="submit-field">
+            <input type="submit" className="btn" value="Add Form" />
           </div>
         </form>
       </div>

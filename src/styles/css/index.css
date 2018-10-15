@@ -37,6 +37,8 @@ a {
   .btn:hover {
     color: #fff;
     background-color: #63afdc; }
+  .btn:active, .btn:focus {
+    outline: none; }
 
 h1.masthead {
   text-align: center;
@@ -144,17 +146,24 @@ h1.masthead {
     height: 60px;
     padding: 15px;
     font-size: 18px;
-    width: 100%; }
+    width: 100%;
+    max-width: 470px; }
+  .poll-form button.btn {
+    transition: 0.2s all; }
+    .poll-form button.btn[disabled] {
+      opacity: 0; }
   .poll-form .answer-field {
     position: relative; }
-    .poll-form .answer-field input[type="text"] {
-      max-width: 470px; }
     .poll-form .answer-field svg {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       right: 0;
+      color: #fd7878;
       cursor: pointer;
       display: none; }
     .poll-form .answer-field:last-of-type svg {
       display: inline-block; }
+  .poll-form .submit-field {
+    text-align: center;
+    margin: 35px 0 0 0; }

@@ -16,18 +16,23 @@
       padding: 15px;
       font-size: 18px;
       width: 100%;
+      max-width: 470px;
+    }
+  }
+  button.btn {
+    transition: 0.2s all;
+    &[disabled] {
+      opacity: 0;
     }
   }
   .answer-field {
     position: relative;
-    input[type="text"] {
-      max-width: 470px;
-    }
     svg {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       right: 0;
+      color: #fd7878;
       cursor: pointer;
       display: none;
     }
@@ -36,5 +41,9 @@
         display: inline-block;
       }
     }
+  }
+  .submit-field {
+    text-align: center;
+    margin: 35px 0 0 0;
   }
 }

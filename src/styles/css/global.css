@@ -36,3 +36,5 @@ a {
   .btn:hover {
     color: #fff;
     background-color: #63afdc; }
+  .btn:active, .btn:focus {
+    outline: none; }
