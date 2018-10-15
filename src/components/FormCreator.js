@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
 class FormCreator extends Component {
   componentWillMount() {
@@ -14,7 +16,7 @@ class FormCreator extends Component {
     }
   }
 
-  makePollId() {
+  createPollId() {
     let text = "";
     const possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -29,7 +31,7 @@ class FormCreator extends Component {
     const refs = this.refs;
     const pollObject = {
       text: refs.formTitle.value,
-      pollId: this.makePollId(),
+      pollId: this.createPollId(),
       answers: []
     };
     Object.keys(refs).forEach(function(key) {
@@ -62,13 +64,22 @@ class FormCreator extends Component {
 
   renderAnswerFields(id, index) {
     const inputField = (
-      <input
-        type="text"
-        id={id}
-        key={index}
-        ref={id}
-        placeholder={`Poll Option #${index + 1}`}
-      />
+      <div key={index} className="answer-field">
+        <input
+          type="text"
+          id={id}
+          ref={id}
+          placeholder={`Poll Option #${index + 1}`}
+        />
+        {index > 1 ? (
+          <FontAwesomeIcon
+            icon={faMinusCircle}
+            onClick={this.props.removePollOption}
+          />
+        ) : (
+          ""
+        )}
+      </div>
     );
     return inputField;
   }
@@ -90,7 +101,9 @@ class FormCreator extends Component {
           </div>
           <div className="input-field">
             <label>Polling answers!</label>
-            {this.props.pollForm.inputId.map(this.renderAnswerFields)}
+            {this.props.pollForm.inputId.map(
+              this.renderAnswerFields.bind(this)
+            )}
           </div>
           <div className="input-field">
             <button

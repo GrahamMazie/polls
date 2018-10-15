@@ -60,3 +60,7 @@ export const signOut = () => dispatch => {
 export const addPollOption = () => dispatch => {
   dispatch({ type: "ADD_POLL_OPTION" });
 };
+
+export const removePollOption = () => dispatch => {
+  dispatch({ type: "REMOVE_POLL_OPTION" });
+};

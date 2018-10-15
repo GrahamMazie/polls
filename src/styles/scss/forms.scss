@@ -18,4 +18,23 @@
       width: 100%;
     }
   }
+  .answer-field {
+    position: relative;
+    input[type="text"] {
+      max-width: 470px;
+    }
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      cursor: pointer;
+      display: none;
+    }
+    &:last-of-type {
+      svg {
+        display: inline-block;
+      }
+    }
+  }
 }

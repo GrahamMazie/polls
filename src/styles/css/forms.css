@@ -14,3 +14,16 @@
     padding: 15px;
     font-size: 18px;
     width: 100%; }
+  .poll-form .answer-field {
+    position: relative; }
+    .poll-form .answer-field input[type="text"] {
+      max-width: 470px; }
+    .poll-form .answer-field svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      cursor: pointer;
+      display: none; }
+    .poll-form .answer-field:last-of-type svg {
+      display: inline-block; }
