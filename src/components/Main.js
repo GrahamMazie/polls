@@ -13,7 +13,7 @@ import * as actions from "../actions/actionCreators";
 
 class Main extends Component {
   componentWillMount() {
-    this.props.fetchUser();
+    this.props.fetchAuth();
   }
 
   renderPollList = state => {

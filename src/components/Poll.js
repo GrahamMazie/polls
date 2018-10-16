@@ -49,6 +49,17 @@ class Poll extends Component {
     this.props.changeSelectedVote(dataCopy);
     return;
   }
+  handleRemoveVote() {
+    const pollIndex = this.props.data.findIndex(
+      poll => JSON.stringify(poll) === JSON.stringify(this.props.poll)
+    );
+    const index = this.props.poll.answers.findIndex(answer => answer.selected);
+    const dataCopy = { ...this.props.data };
+    dataCopy[pollIndex].answers[index].votes =
+      dataCopy[pollIndex].answers[index].votes - 1;
+    this.props.removeVote(dataCopy, pollIndex);
+    return;
+  }
   render() {
     const pollData = this.props.poll;
     const totalVotes = pollData.answers.reduce((a, b) => ({
@@ -57,6 +68,11 @@ class Poll extends Component {
     if (pollData !== undefined) {
       return (
         <div className="poll-container">
+          {this.props.user.submittedForms.includes(this.props.poll.pollId) && (
+            <button onClick={this.handleRemoveVote.bind(this)}>
+              Remove Vote
+            </button>
+          )}
           {Object.keys(this.props.id).length === 0 ? (
             <Link to={`/poll/${this.props.poll.pollId}`} className="poll-item">
               <ResultsDisplay {...this.props} totalVotes={totalVotes} />
@@ -66,7 +82,8 @@ class Poll extends Component {
               <ResultsDisplay {...this.props} totalVotes={totalVotes} />
             </div>
           )}
-          {this.props.authenticated ? (
+          {this.props.authenticated &&
+          !this.props.user.submittedForms.includes(this.props.poll.pollId) ? (
             <form onSubmit={e => this.handleSubmit(e)}>
               <div className="radio-buttons">
                 {pollData.answers.map(this.inputRender)}
@@ -87,7 +104,8 @@ class Poll extends Component {
 const mapStateToProps = state => {
   return {
     authenticated: state.auth,
-    data: state.polls
+    data: state.polls,
+    user: state.user
   };
 };
 
