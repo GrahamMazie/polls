@@ -8,18 +8,12 @@ class Single extends Component {
     this.props.fetchPolls();
   }
   findPoll = () => {
-    const polls = this.props.data;
-    const index = polls.findIndex(poll => {
-      if (poll) {
-        return poll.pollId === this.props.id.pollId;
-      } else {
-        return false;
-      }
-    });
-    return { ...polls[index] };
+    const obj = { ...this.props.data };
+    const id = this.props.id.pollId;
+    return obj[id];
   };
   render() {
-    if (this.props.data.length !== 0) {
+    if (Object.keys(this.props.data).length !== 0) {
       return (
         <div className="poll-list">
           <div className="contain">

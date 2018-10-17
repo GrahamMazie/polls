@@ -14,67 +14,102 @@ class Poll extends Component {
             type="radio"
             name="pollRadioBtn"
             value={answer.text}
-            onChange={this.handleRadioSelect.bind(
-              this,
-              this.props.poll.pollId,
-              index
-            )}
-            checked={answer.selected}
+            onChange={this.handleRadioSelect.bind(this, index)}
+            checked={this.handleSelected(index)}
           />
         </label>
       </div>
     );
   };
+
   handleSubmit(e) {
     e.preventDefault();
-    const pollIndex = this.props.data.findIndex(
-      poll => JSON.stringify(poll) === JSON.stringify(this.props.poll)
-    );
-    const index = this.props.poll.answers.findIndex(answer => answer.selected);
     const dataCopy = { ...this.props.data };
-    dataCopy[pollIndex].answers[index].votes =
-      dataCopy[pollIndex].answers[index].votes + 1;
-    this.props.addVote(dataCopy, pollIndex);
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
+    let answerIndex;
+    if (pollId in this.props.user.selectedVote) {
+      answerIndex = this.props.user.selectedVote[pollId].findIndex(
+        answer => answer.selected
+      );
+    } else {
+      answerIndex = 0;
+    }
+
+    dataCopy[pollId].answers[answerIndex].votes =
+      dataCopy[pollId].answers[answerIndex].votes + 1;
+    this.props.addVote(dataCopy, pollId, answerIndex);
     return;
   }
-  handleRadioSelect(pollId, i) {
-    const pollIndex = this.props.data.findIndex(
-      poll => JSON.stringify(poll) === JSON.stringify(this.props.poll)
-    );
+
+  handleRadioSelect(selectedAnswerIndex) {
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
     const dataCopy = { ...this.props.data };
-    dataCopy[pollIndex].answers.map((answer, index) => {
+    dataCopy[pollId].answers.map((answer, index) => {
       return (answer.selected = false);
     });
-    dataCopy[pollIndex].answers[i].selected = true;
-    this.props.changeSelectedVote(dataCopy);
+    dataCopy[pollId].answers[selectedAnswerIndex].selected = true;
+    this.props.changeSelectedVote(dataCopy[pollId].answers, pollId);
     return;
   }
+
   handleRemoveVote() {
-    const pollIndex = this.props.data.findIndex(
-      poll => JSON.stringify(poll) === JSON.stringify(this.props.poll)
-    );
-    const index = this.props.poll.answers.findIndex(answer => answer.selected);
     const dataCopy = { ...this.props.data };
-    dataCopy[pollIndex].answers[index].votes =
-      dataCopy[pollIndex].answers[index].votes - 1;
-    this.props.removeVote(dataCopy, pollIndex);
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
+    let answerIndex;
+    if (pollId in this.props.user.selectedVote) {
+      answerIndex = this.props.user.selectedVote[pollId].findIndex(
+        answer => answer.selected
+      );
+    } else {
+      answerIndex = 0;
+    }
+
+    dataCopy[pollId].answers[answerIndex].votes =
+      dataCopy[pollId].answers[answerIndex].votes - 1;
+    this.props.removeVote(dataCopy, pollId);
     return;
   }
+
+  handleSelected(answerIndex) {
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
+    if (this.props.user && this.props.user.selectedVote) {
+      if (pollId in this.props.user.selectedVote) {
+        const selected = this.props.user.selectedVote[pollId][answerIndex]
+          .selected;
+        return selected;
+      } else {
+        if (answerIndex === 0) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } else {
+      if (answerIndex === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   render() {
     const pollData = this.props.poll;
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
     const totalVotes = pollData.answers.reduce((a, b) => ({
       votes: a.votes + b.votes
     })).votes;
     if (pollData !== undefined) {
       return (
         <div className="poll-container">
-          {this.props.user.submittedForms.includes(this.props.poll.pollId) && (
-            <button onClick={this.handleRemoveVote.bind(this)}>
-              Remove Vote
-            </button>
-          )}
+          {this.props.authenticated &&
+            this.props.user.submittedForms.hasOwnProperty(pollId) && (
+              <button onClick={this.handleRemoveVote.bind(this)}>
+                Remove Vote
+              </button>
+            )}
           {Object.keys(this.props.id).length === 0 ? (
-            <Link to={`/poll/${this.props.poll.pollId}`} className="poll-item">
+            <Link to={`/poll/${this.props.pollId}`} className="poll-item">
               <ResultsDisplay {...this.props} totalVotes={totalVotes} />
             </Link>
           ) : (
@@ -83,7 +118,7 @@ class Poll extends Component {
             </div>
           )}
           {this.props.authenticated &&
-          !this.props.user.submittedForms.includes(this.props.poll.pollId) ? (
+          !this.props.user.submittedForms.hasOwnProperty(pollId) ? (
             <form onSubmit={e => this.handleSubmit(e)}>
               <div className="radio-buttons">
                 {pollData.answers.map(this.inputRender)}

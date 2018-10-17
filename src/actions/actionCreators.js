@@ -1,6 +1,6 @@
 import { pollsRef, authRef, userRef, fbProvider } from "../store";
 
-export const addVote = (polls, pollIndex) => async dispatch => {
+export const addVote = (polls, pollId, answerIndex) => async dispatch => {
   // Add vote to poll in database. Will trigger fetchPolls action creator
   // due to listening for database poll changes.
   pollsRef.set(polls);
@@ -14,15 +14,18 @@ export const addVote = (polls, pollIndex) => async dispatch => {
     .then(function(snapshot) {
       const snap = snapshot.val();
       if (snap && snap.submittedForms) {
-        const submittedForms = snap.submittedForms;
-        submittedForms.push(polls[pollIndex].pollId);
+        const submittedForms = { ...snap.submittedForms };
+        if (!(pollId in submittedForms)) {
+          submittedForms[pollId] = answerIndex;
+        }
         userRef
           .child(uid)
           .child("submittedForms")
           .set(submittedForms);
       } else {
-        const list = [];
-        list.push(polls[pollIndex].pollId);
+        const list = {};
+        list[pollId] = answerIndex;
+        console.log(list);
         userRef
           .child(uid)
           .child("submittedForms")
@@ -31,7 +34,7 @@ export const addVote = (polls, pollIndex) => async dispatch => {
     });
 };
 
-export const removeVote = (polls, pollIndex) => async dispatch => {
+export const removeVote = (polls, pollId) => async dispatch => {
   // Add vote to poll in database. Will trigger fetchPolls action creator
   // due to listening for database poll changes.
   pollsRef.set(polls);
@@ -43,20 +46,41 @@ export const removeVote = (polls, pollIndex) => async dispatch => {
     .child(uid)
     .once("value")
     .then(function(snapshot) {
-      const submittedForms = snapshot.val().submittedForms;
-      const pollIdIndex = submittedForms.indexOf(polls[pollIndex].pollId);
-      if (pollIdIndex > -1) {
-        submittedForms.splice(pollIdIndex, 1);
+      const snap = snapshot.val();
+      if (snap && snap.submittedForms) {
+        const submittedForms = { ...snap.submittedForms };
+        delete submittedForms[pollId];
+        userRef
+          .child(uid)
+          .child("submittedForms")
+          .set(submittedForms);
       }
-      userRef
-        .child(uid)
-        .child("submittedForms")
-        .set(submittedForms);
     });
 };
 
-export const changeSelectedVote = polls => async dispatch => {
-  pollsRef.set(polls);
+export const changeSelectedVote = (answers, pollId) => dispatch => {
+  const uid = authRef.currentUser.uid;
+  userRef
+    .child(uid)
+    .once("value")
+    .then(function(snapshot) {
+      const snap = snapshot.val();
+      if (snap && snap.selectedVote) {
+        const selectedVoteCopy = { ...snap.selectedVote };
+        selectedVoteCopy[pollId] = { ...answers };
+        userRef
+          .child(uid)
+          .child("selectedVote")
+          .set(selectedVoteCopy);
+      } else {
+        const voteObj = {};
+        voteObj[pollId] = { ...answers };
+        userRef
+          .child(uid)
+          .child("selectedVote")
+          .set(voteObj);
+      }
+    });
 };
 
 export const addPoll = polls => async dispatch => {
@@ -89,7 +113,16 @@ export const fetchAuth = () => dispatch => {
         .child("submittedForms")
         .on("value", snapshot => {
           dispatch({
-            type: "FETCH_USER",
+            type: "FETCH_USER_FORM_SUBMISSION",
+            payload: snapshot.val()
+          });
+        });
+      userRef
+        .child(uid)
+        .child("selectedVote")
+        .on("value", snapshot => {
+          dispatch({
+            type: "FETCH_USER_VOTE_SELECTION",
             payload: snapshot.val()
           });
         });

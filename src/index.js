@@ -19,6 +19,11 @@ const store = createStore(
     },
     auth: {
       isLoading: true
+    },
+    polls: {},
+    user: {
+      selectedVote: {},
+      submittedForms: {}
     }
   },
   composeEnhancers(applyMiddleware(reduxThunk, routerMiddleware(history)))

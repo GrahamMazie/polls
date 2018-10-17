@@ -37,11 +37,11 @@ class ResultsDisplay extends Component {
     return (
       <span
         data-tip
-        data-for={`renderBar${index}Poll${this.props.poll.pollId}`}
+        data-for={`renderBar${index}Poll${this.props.pollId}`}
         style={{ width: `${widthPercent}%`, background: bgColor }}
         key={index}
       >
-        <ReactTooltip id={`renderBar${index}Poll${this.props.poll.pollId}`}>
+        <ReactTooltip id={`renderBar${index}Poll${this.props.pollId}`}>
           <span>{`${widthPercent}%`}</span>
           <span>{`Votes: ${barData.votes}`}</span>
         </ReactTooltip>

@@ -29,28 +29,21 @@ class FormCreator extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const refs = this.refs;
+    const pollId = this.createPollId();
     const pollObject = {
       text: refs.formTitle.value,
-      pollId: this.createPollId(),
       answers: []
     };
     Object.keys(refs).forEach(function(key) {
-      if (key === "pollOption1") {
+      if (key !== "formTitle") {
         pollObject.answers.push({
           votes: 0,
-          selected: true,
-          text: refs[key].value
-        });
-      } else if (key !== "formTitle" && key !== "pollOption1") {
-        pollObject.answers.push({
-          votes: 0,
-          selected: false,
           text: refs[key].value
         });
       }
     });
-    const pollListing = [...this.props.polls];
-    pollListing.push(pollObject);
+    const pollListing = { ...this.props.polls };
+    pollListing[pollId] = pollObject;
     this.props.addPoll(pollListing);
     this.props.history.push("/");
     return;

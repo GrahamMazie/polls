@@ -4,9 +4,13 @@ import Poll from "./Poll";
 import * as actions from "../actions/actionCreators";
 
 class PollList extends Component {
-  renderPolls = (poll, index) => {
-    return <Poll key={index} poll={poll} {...this.props} />;
-  };
+  renderPolls() {
+    const props = this.props;
+    const obj = Object.keys(props.data);
+    return obj.map(key => {
+      return <Poll key={key} pollId={key} poll={props.data[key]} {...props} />;
+    });
+  }
 
   componentWillMount() {
     this.props.fetchPolls();
@@ -15,7 +19,7 @@ class PollList extends Component {
   render() {
     return (
       <div className="poll-list">
-        <div className="contain">{this.props.data.map(this.renderPolls)}</div>
+        <div className="contain">{this.renderPolls()}</div>
       </div>
     );
   }
