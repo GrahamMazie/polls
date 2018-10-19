@@ -3,6 +3,7 @@ import { routerReducer } from "react-router-redux";
 import pollsReducer from "./polls";
 import authReducer from "./auth";
 import pollFormReducer from "./pollForm";
+import signUpFormReducer from "./signUpForm";
 import userReducer from "./user";
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   polls: pollsReducer,
   pollForm: pollFormReducer,
+  signUpForm: signUpFormReducer,
   user: userReducer
 });
 

@@ -12,3 +12,4 @@ export const pollsRef = databaseRef.child("polls");
 export const userRef = databaseRef.child("users");
 export const authRef = firebase.auth();
 export const fbProvider = new firebase.auth.FacebookAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();

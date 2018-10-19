@@ -7,6 +7,7 @@ import PollList from "./PollList";
 import Single from "./Single";
 import NotFound from "./NotFound";
 import Login from "./Login";
+import SignUp from "./SignUp";
 import FormCreator from "./FormCreator";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
@@ -17,10 +18,12 @@ class Main extends Component {
   }
 
   renderPollList = state => {
-    return <PollList id={state.match.params} {...this.props} />;
+    return (
+      <PollList id={state.match.params} history={history} {...this.props} />
+    );
   };
   renderSingle = state => {
-    return <Single id={state.match.params} {...this.props} />;
+    return <Single id={state.match.params} history={history} {...this.props} />;
   };
   render() {
     return (
@@ -31,6 +34,7 @@ class Main extends Component {
             <Route path="/" exact render={this.renderPollList} />
             <Route path="/poll/:pollId" render={this.renderSingle} />
             <Route path="/login" component={Login} />
+            <Route path="/sign-up" component={SignUp} />
             <Route path="/form-creator" component={FormCreator} />
             <Route component={NotFound} />
           </Switch>

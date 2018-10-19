@@ -3,6 +3,7 @@ import ResultsDisplay from "./ResultsDisplay";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions/actionCreators";
+import NotFound from "./NotFound";
 
 class Poll extends Component {
   inputRender = (answer, index) => {
@@ -96,10 +97,10 @@ class Poll extends Component {
   render() {
     const pollData = this.props.poll;
     const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
-    const totalVotes = pollData.answers.reduce((a, b) => ({
-      votes: a.votes + b.votes
-    })).votes;
     if (pollData !== undefined) {
+      const totalVotes = pollData.answers.reduce((a, b) => ({
+        votes: a.votes + b.votes
+      })).votes;
       return (
         <div className="poll-container">
           {this.props.authenticated &&
@@ -118,20 +119,18 @@ class Poll extends Component {
             </div>
           )}
           {this.props.authenticated &&
-          !this.props.user.submittedForms.hasOwnProperty(pollId) ? (
-            <form onSubmit={e => this.handleSubmit(e)}>
-              <div className="radio-buttons">
-                {pollData.answers.map(this.inputRender)}
-              </div>
-              <input type="submit" value="Submit" />
-            </form>
-          ) : (
-            ""
-          )}
+            !this.props.user.submittedForms.hasOwnProperty(pollId) && (
+              <form onSubmit={e => this.handleSubmit(e)}>
+                <div className="radio-buttons">
+                  {pollData.answers.map(this.inputRender)}
+                </div>
+                <input type="submit" value="Submit" />
+              </form>
+            )}
         </div>
       );
     } else {
-      return null;
+      return <NotFound />;
     }
   }
 }

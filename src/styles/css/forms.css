@@ -1,3 +1,28 @@
+input[type="text"], input[type="email"], input[type="password"] {
+  display: block;
+  margin: 0 0 15px;
+  height: 60px;
+  padding: 15px;
+  font-size: 18px;
+  width: 100%; }
+
+.answer-field {
+  position: relative; }
+  .answer-field svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -25px;
+    color: #fd7878;
+    cursor: pointer;
+    display: none; }
+  .answer-field:last-of-type svg {
+    display: inline-block; }
+
+.submit-field {
+  text-align: center;
+  margin: 35px 0 0 0; }
+
 .poll-form {
   max-width: 500px;
   margin: 0 auto;
@@ -7,29 +32,7 @@
     display: inline-block;
     font-family: "Amaranth", sans-serif;
     font-size: 30px; }
-  .poll-form input[type="text"] {
-    display: block;
-    margin: 0 0 15px;
-    height: 60px;
-    padding: 15px;
-    font-size: 18px;
-    width: 100%; }
   .poll-form button.btn {
     transition: 0.2s all; }
     .poll-form button.btn[disabled] {
       opacity: 0; }
-  .poll-form .answer-field {
-    position: relative; }
-    .poll-form .answer-field svg {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: -25px;
-      color: #fd7878;
-      cursor: pointer;
-      display: none; }
-    .poll-form .answer-field:last-of-type svg {
-      display: inline-block; }
-  .poll-form .submit-field {
-    text-align: center;
-    margin: 35px 0 0 0; }

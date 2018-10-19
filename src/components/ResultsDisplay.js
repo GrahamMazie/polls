@@ -57,9 +57,23 @@ class ResultsDisplay extends Component {
       </div>
     );
   };
+
+  deletePoll(e) {
+    e.preventDefault();
+    const pollId = this.props.pollId ? this.props.pollId : this.props.id.pollId;
+    const polls = { ...this.props.data };
+    delete polls[pollId];
+    this.props.setPoll(polls);
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <div className="poll-results">
+        {this.props.authenticated &&
+          this.props.authenticated.uid === this.props.poll.author && (
+            <button onClick={e => this.deletePoll(e)}>Delete Poll</button>
+          )}
         <h3 className="poll-title">{this.props.poll.text}</h3>
         <div className="result-container">
           {this.props.poll.answers.map(this.renderBars)}

@@ -21,6 +21,10 @@ const store = createStore(
       isLoading: true
     },
     polls: {},
+    signUpForm: {
+      emailValidated: false,
+      passwordValidated: false
+    },
     user: {
       selectedVote: {},
       submittedForms: {}

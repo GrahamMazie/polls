@@ -1,4 +1,4 @@
-import { pollsRef, authRef, userRef, fbProvider } from "../store";
+import { pollsRef, authRef, userRef } from "../store";
 
 export const addVote = (polls, pollId, answerIndex) => async dispatch => {
   // Add vote to poll in database. Will trigger fetchPolls action creator
@@ -25,7 +25,6 @@ export const addVote = (polls, pollId, answerIndex) => async dispatch => {
       } else {
         const list = {};
         list[pollId] = answerIndex;
-        console.log(list);
         userRef
           .child(uid)
           .child("submittedForms")
@@ -88,6 +87,10 @@ export const addPoll = polls => async dispatch => {
   dispatch({ type: "RESET_POLL_FORM" });
 };
 
+export const setPoll = polls => async dispatch => {
+  pollsRef.set(polls);
+};
+
 export const fetchPolls = () => async dispatch => {
   pollsRef.on("value", snapshot => {
     dispatch({
@@ -135,12 +138,21 @@ export const fetchAuth = () => dispatch => {
   });
 };
 
-export const signIn = () => dispatch => {
+export const signIn = provider => dispatch => {
   authRef
-    .signInWithPopup(fbProvider)
+    .signInWithPopup(provider)
     .then(result => {})
     .catch(error => {
       console.log(error);
+    });
+};
+
+export const signUp = (email, password) => dispatch => {
+  authRef
+    .createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      console.error(error.message);
+      console.error(error.code);
     });
 };
 
@@ -161,4 +173,11 @@ export const addPollOption = () => dispatch => {
 
 export const removePollOption = () => dispatch => {
   dispatch({ type: "REMOVE_POLL_OPTION" });
+};
+
+export const validateSignUpForm = validateObj => dispatch => {
+  dispatch({
+    type: "VALIDATE_SIGN_UP_FORM",
+    payload: validateObj
+  });
 };

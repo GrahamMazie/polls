@@ -32,6 +32,8 @@ class FormCreator extends Component {
     const pollId = this.createPollId();
     const pollObject = {
       text: refs.formTitle.value,
+      createdAt: Date.now(),
+      author: this.props.authenticated.uid,
       answers: []
     };
     Object.keys(refs).forEach(function(key) {

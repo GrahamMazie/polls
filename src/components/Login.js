@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fbProvider, googleProvider } from "../store";
 import * as actions from "../actions/actionCreators";
 
 class Login extends Component {
@@ -18,11 +20,26 @@ class Login extends Component {
     return (
       <div className="contain">
         {!this.props.authenticated && (
-          <div>
+          <div className="sign-in-wrapper">
             <h4 id="sign-in-header">Sign In to start</h4>
-            <button className="social-signin btn" onClick={this.props.signIn}>
+            <button
+              className="social-signin btn"
+              onClick={() => this.props.signIn(fbProvider)}
+            >
               Sign In With Facebook
             </button>
+            <button
+              className="social-signin btn"
+              onClick={() => this.props.signIn(googleProvider)}
+            >
+              Sign In With Google
+            </button>
+            <div className="sign-up-button-wrapper">
+              <h4 id="sign-in-header">No account? Sign up!</h4>
+              <Link to="/sign-up" className="btn">
+                Sign Up
+              </Link>
+            </div>
           </div>
         )}
       </div>
