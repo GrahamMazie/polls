@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
+import { connect } from "react-redux";
+import * as actions from "../actions/actionCreators";
 
 class ResultsDisplay extends Component {
   increase_brightness(hex, percent) {
@@ -64,6 +66,7 @@ class ResultsDisplay extends Component {
     const polls = { ...this.props.data };
     delete polls[pollId];
     this.props.setPoll(polls);
+    this.props.fetchPolls(this.props.pollListSort);
     this.props.history.push("/");
   }
 
@@ -86,4 +89,13 @@ class ResultsDisplay extends Component {
   }
 }
 
-export default ResultsDisplay;
+const mapStateToProps = state => {
+  return {
+    pollListSort: state.pollListSort
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(ResultsDisplay);

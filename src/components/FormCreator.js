@@ -33,8 +33,10 @@ class FormCreator extends Component {
     const pollObject = {
       text: refs.formTitle.value,
       createdAt: Date.now(),
+      reverseDateLookUp: 0 - Date.now(),
       author: this.props.authenticated.uid,
-      answers: []
+      answers: [],
+      totalVoteLookup: 0
     };
     Object.keys(refs).forEach(function(key) {
       if (key !== "formTitle") {

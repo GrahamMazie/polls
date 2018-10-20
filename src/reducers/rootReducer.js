@@ -5,6 +5,7 @@ import authReducer from "./auth";
 import pollFormReducer from "./pollForm";
 import signUpFormReducer from "./signUpForm";
 import userReducer from "./user";
+import pollListSortReducer from "./pollListSort";
 
 const rootReducer = combineReducers({
   router: routerReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   polls: pollsReducer,
   pollForm: pollFormReducer,
   signUpForm: signUpFormReducer,
-  user: userReducer
+  user: userReducer,
+  pollListSort: pollListSortReducer
 });
 
 export default rootReducer;

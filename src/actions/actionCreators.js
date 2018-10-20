@@ -91,11 +91,19 @@ export const setPoll = polls => async dispatch => {
   pollsRef.set(polls);
 };
 
-export const fetchPolls = () => async dispatch => {
-  pollsRef.on("value", snapshot => {
+export const fetchPolls = (sortValue = "totalVoteLookup") => async dispatch => {
+  pollsRef.orderByChild(sortValue).once("value", snapshot => {
+    const newPolls = {};
+    snapshot.forEach(function(child) {
+      newPolls[child.key] = child.val();
+    });
+    dispatch({
+      type: "HANDLE_POLL_LIST_SORT",
+      sortValue
+    });
     dispatch({
       type: "FETCH_POLLS",
-      payload: snapshot.val()
+      payload: newPolls
     });
   });
 };

@@ -5,7 +5,7 @@ import * as actions from "../actions/actionCreators";
 
 class Single extends Component {
   componentWillMount() {
-    this.props.fetchPolls();
+    this.props.fetchPolls(this.props.pollListSort);
   }
   findPoll = () => {
     const obj = { ...this.props.data };
@@ -28,7 +28,10 @@ class Single extends Component {
 }
 
 function mapStateToProps(state) {
-  return { data: state.polls };
+  return {
+    data: state.polls,
+    pollListSort: state.pollListSort
+  };
 }
 export default connect(
   mapStateToProps,

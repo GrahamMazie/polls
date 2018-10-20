@@ -38,6 +38,7 @@ class Poll extends Component {
 
     dataCopy[pollId].answers[answerIndex].votes =
       dataCopy[pollId].answers[answerIndex].votes + 1;
+    dataCopy[pollId].totalVoteLookup = dataCopy[pollId].totalVoteLookup - 1;
     this.props.addVote(dataCopy, pollId, answerIndex);
     return;
   }
@@ -67,6 +68,7 @@ class Poll extends Component {
 
     dataCopy[pollId].answers[answerIndex].votes =
       dataCopy[pollId].answers[answerIndex].votes - 1;
+    dataCopy[pollId].totalVoteLookup = dataCopy[pollId].totalVoteLookup + 1;
     this.props.removeVote(dataCopy, pollId);
     return;
   }

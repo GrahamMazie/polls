@@ -28,7 +28,8 @@ const store = createStore(
     user: {
       selectedVote: {},
       submittedForms: {}
-    }
+    },
+    pollListSort: "totalVoteLookup"
   },
   composeEnhancers(applyMiddleware(reduxThunk, routerMiddleware(history)))
 );
