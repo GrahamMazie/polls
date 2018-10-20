@@ -147,6 +147,13 @@ export const signIn = provider => dispatch => {
     });
 };
 
+export const signInWithForm = (email, password) => dispatch => {
+  authRef.signInWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+  });
+};
+
 export const signUp = (email, password) => dispatch => {
   authRef
     .createUserWithEmailAndPassword(email, password)

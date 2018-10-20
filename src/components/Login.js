@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import SignInForm from "./SignInForm";
 import { fbProvider, googleProvider } from "../store";
 import * as actions from "../actions/actionCreators";
 
@@ -22,6 +23,7 @@ class Login extends Component {
         {!this.props.authenticated && (
           <div className="sign-in-wrapper">
             <h4 id="sign-in-header">Sign In to start</h4>
+            <SignInForm />
             <button
               className="social-signin btn"
               onClick={() => this.props.signIn(fbProvider)}

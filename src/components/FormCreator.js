@@ -47,7 +47,7 @@ class FormCreator extends Component {
     const pollListing = { ...this.props.polls };
     pollListing[pollId] = pollObject;
     this.props.addPoll(pollListing);
-    this.props.history.push("/");
+    this.props.history.push(`/poll/${pollId}`);
     return;
   }
 
