@@ -1,18 +1,72 @@
-.header-container {
-  position: relative;
-  .masthead {
-    text-align: center;
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke * -1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
+    }
   }
-  .header-link-wrapper,
+  @return $shadow;
+}
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+.header-container {
+  background: #83afc9;
+  .contain {
+    position: relative;
+  }
+  h1.masthead {
+    font-size: 80px;
+    padding: 40px 0;
+    line-height: 60px;
+    margin: 0 0 45px;
+    text-align: center;
+    a {
+      color: #000;
+      font-family: "Amaranth", sans-serif;
+      font-weight: 700;
+      font-style: italic;
+      @include stroke(2, #fff);
+    }
+    @media (max-width: 530px) {
+      padding: 150px 0 40px;
+    }
+  }
   a.btn {
     position: absolute;
-    top: 0;
+    top: 15px;
     right: 15px;
+    color: #000;
+    border-color: #000;
+    &:hover {
+      background: #000;
+      color: #83afc9;
+    }
   }
   .header-link-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     text-align: center;
     button {
       display: block;
+      color: #000;
+      border-color: #000;
+      background: none;
+      &:hover {
+        background: #000;
+        color: #83afc9;
+      }
     }
     a {
       display: inline-block;

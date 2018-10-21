@@ -159,6 +159,8 @@ export const signInWithForm = (email, password) => dispatch => {
   authRef.signInWithEmailAndPassword(email, password).catch(function(error) {
     console.log(error.code);
     console.log(error.message);
+    document.querySelector(".error-message").innerText =
+      "Email or password not found.";
   });
 };
 

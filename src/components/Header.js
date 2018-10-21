@@ -28,17 +28,19 @@ class Header extends Component {
   }
   render() {
     return (
-      <div className="contain header-container">
-        <h1 className="masthead">
-          <Link to="/">Polls!</Link>
-        </h1>
-        {this.props.authenticated ? (
-          !this.props.authenticated.isLoading && this.renderLogoutButtons()
-        ) : (
-          <Link to="/login" className="btn">
-            Login
-          </Link>
-        )}
+      <div className="header-container">
+        <div className="contain">
+          <h1 className="masthead">
+            <Link to="/">Polls!</Link>
+          </h1>
+          {this.props.authenticated ? (
+            !this.props.authenticated.isLoading && this.renderLogoutButtons()
+          ) : (
+            <Link to="/login" className="btn">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     );
   }

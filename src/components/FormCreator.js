@@ -103,7 +103,12 @@ class FormCreator extends Component {
               this.renderAnswerFields.bind(this)
             )}
           </div>
-          <div className="input-field">
+          <div
+            className={
+              "input-field " +
+              (this.props.pollForm.inputId.length >= 5 && "disabled")
+            }
+          >
             <button
               onClick={this.addAnswer.bind(this)}
               disabled={this.props.pollForm.inputId.length >= 5}

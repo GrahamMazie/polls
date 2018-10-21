@@ -1,8 +1,21 @@
 .sign-in-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+  .sign-in-form {
+    margin: 0 0 30px 0;
+  }
   .btn {
     display: block;
+    &.social-signin {
+      margin: 15px 0 0 0;
+      svg {
+        margin: 0 8px 0 0;
+      }
+    }
   }
   .sign-up-button-wrapper {
+    margin: 60px 0 0 0;
     .btn {
       display: inline-block;
     }

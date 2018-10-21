@@ -9,16 +9,15 @@ class SignInForm extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="sign-in-wrapper">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <input type="email" placeholder="Email" ref="email" required />
-            <input type="password" placeholder="Password" ref="pass" required />
-            <div className="submit-field">
-              <input type="submit" className="btn" value="Sign In" />
-            </div>
-          </form>
-        </div>
+      <div className="sign-in-form">
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="email" placeholder="Email" ref="email" required />
+          <input type="password" placeholder="Password" ref="pass" required />
+          <span className="error-message" />
+          <div className="submit-field">
+            <input type="submit" className="btn" value="Sign In" />
+          </div>
+        </form>
       </div>
     );
   }

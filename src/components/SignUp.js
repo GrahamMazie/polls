@@ -9,6 +9,12 @@ class SignUp extends Component {
     }
   }
 
+  componentWillUpdate(nextProps) {
+    if (nextProps.authenticated) {
+      this.props.history.push("/");
+    }
+  }
+
   componentWillUnmount() {
     this.validate(null, {
       emailValidated: false,
@@ -19,8 +25,8 @@ class SignUp extends Component {
   validate(e, validationObj = {}) {
     if (Object.getOwnPropertyNames(validationObj).length <= 0) {
       validationObj = {
-        emailValidated: this.validateEmail(),
-        passwordValidated: this.validatePassword()
+        passwordValidated: this.validatePassword(),
+        emailValidated: this.validateEmail()
       };
     }
     this.props.validateSignUpForm(validationObj);
@@ -28,7 +34,12 @@ class SignUp extends Component {
 
   validateEmail() {
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(this.refs.email.value).toLowerCase());
+    if (re.test(String(this.refs.email.value).toLowerCase())) {
+      return true;
+    } else {
+      document.querySelector(".error-message").innerText =
+        "Please enter a valid email address.";
+    }
   }
 
   validatePassword() {
@@ -38,6 +49,8 @@ class SignUp extends Component {
     ) {
       return true;
     } else {
+      document.querySelector(".error-message").innerText =
+        "Your password must be greater than six characters!";
       return false;
     }
   }
@@ -47,15 +60,13 @@ class SignUp extends Component {
     const form = this.props.signUpForm;
     if (form.emailValidated && form.passwordValidated) {
       this.props.signUp(this.refs.email.value, this.refs.pass.value);
-    } else {
-      console.log("denieded");
     }
   }
 
   render() {
     return (
       <div className="contain">
-        {!this.props.authenticated ? (
+        {!this.props.authenticated && (
           <div className="sign-up-wrapper">
             <form onSubmit={this.handleSubmit.bind(this)}>
               <input
@@ -79,13 +90,12 @@ class SignUp extends Component {
                 ref="passValidator"
                 required
               />
+              <span className="error-message" />
               <div className="submit-field">
                 <input type="submit" className="btn" value="Sign Up" />
               </div>
             </form>
           </div>
-        ) : (
-          this.props.history.push("/")
         )}
       </div>
     );

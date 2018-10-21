@@ -1,8 +1,13 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: sans-serif; }
 
-body {
-  margin: 0; }
+html {
+  background: #e1e2e1; }
+  html,
+  html body {
+    margin: 0;
+    padding: 0; }
 
 .contain {
   max-width: 1200px;
@@ -15,14 +20,14 @@ a {
 .btn {
   display: inline-block;
   padding: 0.35em 1.2em;
-  border: 0.1em solid #63afdc;
+  border: 0.1em solid #548098;
   border-radius: 0.12em;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: #63afdc;
+  color: #548098;
   text-align: center;
   font-weight: bold;
   -webkit-transition: all 0.2s;
@@ -32,9 +37,10 @@ a {
   font-size: 18px;
   cursor: pointer;
   line-height: 1;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  background: none; }
   .btn:hover {
     color: #fff;
-    background-color: #63afdc; }
+    background-color: #548098; }
   .btn:active, .btn:focus {
     outline: none; }

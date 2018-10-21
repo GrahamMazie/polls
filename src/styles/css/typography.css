@@ -2,23 +2,22 @@
   font-family: "Amaranth";
   font-weight: 400;
   font-style: normal;
-  src: url("../../assets/fonts/Amaranth/Amaranth-Regular.ttf");
-}
+  src: url("../../assets/fonts/Amaranth/Amaranth-Regular.ttf"); }
+
 @font-face {
   font-family: "Amaranth";
   font-weight: 400;
   font-style: italic;
-  src: url("../../assets/fonts/Amaranth/Amaranth-Italic.ttf");
-}
+  src: url("../../assets/fonts/Amaranth/Amaranth-Italic.ttf"); }
+
 @font-face {
   font-family: "Amaranth";
   font-weight: 700;
   font-style: normal;
-  src: url("../../assets/fonts/Amaranth/Amaranth-Bold.ttf");
-}
+  src: url("../../assets/fonts/Amaranth/Amaranth-Bold.ttf"); }
+
 @font-face {
   font-family: "Amaranth";
   font-weight: 700;
   font-style: italic;
-  src: url("../../assets/fonts/Amaranth/Amaranth-BoldItalic.ttf");
-}
+  src: url("../../assets/fonts/Amaranth/Amaranth-BoldItalic.ttf"); }

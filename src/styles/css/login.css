@@ -1,0 +1,16 @@
+.sign-in-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 40px 80px; }
+  .sign-in-wrapper .sign-in-form {
+    margin: 0 0 30px 0; }
+  .sign-in-wrapper .btn {
+    display: block; }
+    .sign-in-wrapper .btn.social-signin {
+      margin: 15px 0 0 0; }
+      .sign-in-wrapper .btn.social-signin svg {
+        margin: 0 8px 0 0; }
+  .sign-in-wrapper .sign-up-button-wrapper {
+    margin: 60px 0 0 0; }
+    .sign-in-wrapper .sign-up-button-wrapper .btn {
+      display: inline-block; }
